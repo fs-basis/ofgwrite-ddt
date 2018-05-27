@@ -735,6 +735,11 @@ int umount_rootfs()
 #endif
 		return 0;
 	}
+	else
+	{
+	/* reactivate hdmi output which is stopped when neutrino shutdown */
+		system("echo 'encoder' > /proc/stb/avs/0/input");
+	}
 	show_main_window(1, ofgwrite_version);
 	set_overall_text("Flashing image");
 	set_step_without_incr("Wait until Neutrino is stopped");
