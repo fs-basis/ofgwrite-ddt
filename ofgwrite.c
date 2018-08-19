@@ -560,6 +560,7 @@ int check_neutrino_stopped()
 	{
 //		neutrino_found = exec_ps();
 
+		system("init 4");
 		system("killall start_neutrino 2>/dev/null");
 		system("killall rcS >/dev/null 2>&1");
 		int ret = system("pidof neutrino >/dev/null");
