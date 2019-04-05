@@ -119,22 +119,19 @@ int find_image_files(char* p)
 		{
 			if ((strstr(entry->d_name, "kernel") != NULL
 			  && strstr(entry->d_name, ".bin")   != NULL)			// ET-xx00, XP1000, VU boxes, DAGS boxes
-			 || strcmp(entry->d_name, "uImage") == 0)				// Spark boxes
+			 || strcmp(entry->d_name, "uImage") == 0)			// Spark boxes
 			{
 				strcpy(kernel_filename, path);
 				strcpy(&kernel_filename[strlen(path)], entry->d_name);
 				stat(kernel_filename, &kernel_file_stat);
 				my_printf("Found kernel file: %s\n", kernel_filename);
 			}
-#if 0
 			if (strcmp(entry->d_name, "rootfs.bin") == 0			// ET-xx00, XP1000
 			 || strcmp(entry->d_name, "root_cfe_auto.bin") == 0		// Solo2
-			 || strcmp(entry->d_name, "root_cfe_auto.jffs2") == 0	// other VU boxes
+			 || strcmp(entry->d_name, "root_cfe_auto.jffs2") == 0		// other VU boxes
 			 || strcmp(entry->d_name, "oe_rootfs.bin") == 0			// DAGS boxes
 			 || strcmp(entry->d_name, "e2jffs2.img") == 0			// Spark boxes
-			 || strcmp(entry->d_name, "rootfs.tar.bz2") == 0)		// solo4k
-#endif
-			if (strcmp(entry->d_name, "rootfs.tar.bz2") == 0)
+			 || strcmp(entry->d_name, "rootfs.tar.bz2") == 0)		// solo4k / hd51
 			{
 				strcpy(rootfs_filename, path);
 				strcpy(&rootfs_filename[strlen(path)], entry->d_name);
