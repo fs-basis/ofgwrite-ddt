@@ -116,14 +116,23 @@ gpt_list_table(int xtra UNUSED_PARAM)
 	int found_rootfs = 0;
 	if (multiboot_partition != -1)
 	{
-		sprintf(kernel_name, "kernel%d", multiboot_partition);
-		sprintf(rootfs_name, "rootfs%d", multiboot_partition);
+		if (!strcmp(vumodel, "solo4k"))
+		{
+			sprintf(kernel_name, "kernel_%d", multiboot_partition);
+			sprintf(rootfs_name, "rootfs_%d", multiboot_partition);
+		}
+		else
+		{
+			sprintf(kernel_name, "kernel%d", multiboot_partition);
+			sprintf(rootfs_name, "rootfs%d", multiboot_partition);
+		}
 	}
 	else
 	{
 		strcpy(kernel_name, "kernel");
 		strcpy(rootfs_name, "rootfs");
 	}
+
 	for (i = 0; i < n_parts; i++) {
 		gpt_partition *p = gpt_part(i);
 		if (p->lba_start) {
@@ -141,6 +150,7 @@ gpt_list_table(int xtra UNUSED_PARAM)
 			int k;
 			for (k = 0; k<19; k++)
 				partname[k] = (char)p->name[k];
+			// on vusolo4k and multiboot we call to functions force
 			if (strcmp(partname, kernel_name) == 0)
 			{
 				ext4_kernel_dev_found(disk_device, i+1);
@@ -153,6 +163,10 @@ gpt_list_table(int xtra UNUSED_PARAM)
 			}
 		}
 	}
+
+        //fixme
+        //printf("partname: %s, kernel_name: %s, rootfs_name: %s, found_kernel: %d, found_rootfs: %d\n", partname, kernel_name, rootfs_name, found_kernel, found_rootfs);
+
 
 	// If kernel OR rootfs found, return. If one is missing, handle error later. Don't search for other partitions.
 	// If multiboot partition was specified, return also as user wanted to use a specific partition which was not found.
@@ -193,8 +207,16 @@ gpt_list_table(int xtra UNUSED_PARAM)
 
 	if (multiboot_partition != -1)
 	{
-		sprintf(kernel_name, "kernel%d", multiboot_partition);
-		sprintf(rootfs_name, "rootfs%d", multiboot_partition);
+		if (!strcmp(vumodel,"solo4k"))
+		{
+			sprintf(kernel_name, "kernel_%d", multiboot_partition);
+			sprintf(rootfs_name, "rootfs_%d", multiboot_partition);
+		}
+		else
+		{
+			sprintf(kernel_name, "kernel%d", multiboot_partition);
+			sprintf(rootfs_name, "rootfs%d", multiboot_partition);
+		}
 	}
 	else
 		return;
