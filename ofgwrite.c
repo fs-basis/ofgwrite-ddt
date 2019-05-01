@@ -117,7 +117,7 @@ int find_image_files(char* p)
 		if (entry)
 		{
 			if ((strstr(entry->d_name, "kernel") != NULL
-			  && strstr(entry->d_name, ".bin")   != NULL && !multiboot_partition/*this is ok for over boxes? */)		// ET-xx00, XP1000, VU boxes, DAGS boxes
+			  && strstr(entry->d_name, ".bin")   != NULL)					// ET-xx00, XP1000, VU boxes, DAGS boxes
 			 || strcmp(entry->d_name, "uImage") == 0					// Spark boxes
 			 || (strcmp(entry->d_name, "kernel_1_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 1)
 			 || (strcmp(entry->d_name, "kernel_2_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 2)
