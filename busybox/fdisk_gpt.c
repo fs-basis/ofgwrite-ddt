@@ -199,16 +199,8 @@ gpt_list_table(int xtra UNUSED_PARAM)
 
 	if (multiboot_partition != -1)
 	{
-		if (!strcmp(vumodel,"solo4k"))
-		{
-			sprintf(kernel_name, "kernel_%d", multiboot_partition);
-			sprintf(rootfs_name, "rootfs_%d", multiboot_partition);
-		}
-		else
-		{
-			sprintf(kernel_name, "kernel%d", multiboot_partition);
-			sprintf(rootfs_name, "rootfs%d", multiboot_partition);
-		}
+		sprintf(kernel_name, "kernel%d", multiboot_partition);
+		sprintf(rootfs_name, "rootfs%d", multiboot_partition);
 	}
 	else
 		return;
