@@ -117,28 +117,28 @@ int find_image_files(char* p)
 		if (entry)
 		{
 			if ((strstr(entry->d_name, "kernel") != NULL
-			  && strstr(entry->d_name, ".bin")   != NULL)					// ET-xx00, XP1000, VU boxes, DAGS boxes
-			 || strcmp(entry->d_name, "uImage") == 0					// Spark boxes
-			 || (strcmp(entry->d_name, "kernel_1_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 1)
-			 || (strcmp(entry->d_name, "kernel_2_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 2)
-			 || (strcmp(entry->d_name, "kernel_3_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 3)
-			 || (strcmp(entry->d_name, "kernel_4_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 4))
+			  && strstr(entry->d_name, ".bin")   != NULL)									// ET-xx00, XP1000, VU boxes, DAGS boxes
+			 || strcmp(entry->d_name, "uImage") == 0									// Spark boxes
+			 || (strcmp(entry->d_name, "kernel1_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 1)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "kernel2_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 2)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "kernel3_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 3)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "kernel4_auto.bin") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 4))	// vusolo4k multiboot
 			{
 				strcpy(kernel_filename, path);
 				strcpy(&kernel_filename[strlen(path)], entry->d_name);
 				stat(kernel_filename, &kernel_file_stat);
 				my_printf("Found kernel file: %s\n", kernel_filename);
 			}
-			if (strcmp(entry->d_name, "rootfs.bin") == 0			// ET-xx00, XP1000
-			 || strcmp(entry->d_name, "root_cfe_auto.bin") == 0		// Solo2
-			 || strcmp(entry->d_name, "root_cfe_auto.jffs2") == 0		// other VU boxes
-			 || strcmp(entry->d_name, "oe_rootfs.bin") == 0			// DAGS boxes
-			 || strcmp(entry->d_name, "e2jffs2.img") == 0			// Spark boxes
-			 || strcmp(entry->d_name, "rootfs.tar.bz2") == 0		// solo4k / hd51
-			 || (strcmp(entry->d_name, "rootfs_1.ext4.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 1)
-			 || (strcmp(entry->d_name, "rootfs_2.ext4.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 2)
-			 || (strcmp(entry->d_name, "rootfs_3.ext4.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 3)
-			 || (strcmp(entry->d_name, "rootfs_4.ext4.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 4))
+			if (strcmp(entry->d_name, "rootfs.bin") == 0									// ET-xx00, XP1000
+			 || strcmp(entry->d_name, "root_cfe_auto.bin") == 0								// Solo2
+			 || strcmp(entry->d_name, "root_cfe_auto.jffs2") == 0								// other VU boxes
+			 || strcmp(entry->d_name, "oe_rootfs.bin") == 0									// DAGS boxes
+			 || strcmp(entry->d_name, "e2jffs2.img") == 0									// Spark boxes
+			 || strcmp(entry->d_name, "rootfs.tar.bz2") == 0								// vusolo4k / hd51
+			 || (strcmp(entry->d_name, "rootfs1.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 1)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "rootfs2.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 2)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "rootfs3.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 3)	// vusolo4k multiboot
+			 || (strcmp(entry->d_name, "rootfs4.tar.bz2") == 0 && !strcmp(vumodel, "solo4k") && multiboot_partition == 4))	// vusolo4k multiboot
 			{
 				strcpy(rootfs_filename, path);
 				strcpy(&rootfs_filename[strlen(path)], entry->d_name);
