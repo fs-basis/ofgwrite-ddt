@@ -1008,19 +1008,16 @@ void find_kernel_rootfs_device()
 
 	if (!strcmp(vumodel, "zero4k") && multiboot_partition)
 	{
-#if 0 // TODO
 		if (multiboot_partition == 1)
-			strcpy(kernel_device, "/dev/mmcblk0p4");
+			strcpy(kernel_device, "/dev/mmcblk0p7");
 		else if (multiboot_partition == 2)
-			strcpy(kernel_device, "/dev/mmcblk0p6");
+			strcpy(kernel_device, "/dev/mmcblk0p9");
 		else if (multiboot_partition == 3)
-			strcpy(kernel_device, "/dev/mmcblk0p8");
+			strcpy(kernel_device, "/dev/mmcblk0p11");
 		else if (multiboot_partition == 4)
-			strcpy(kernel_device, "/dev/mmcblk0p10");
+			strcpy(kernel_device, "/dev/mmcblk0p13");
 		my_printf("Using %s as kernel device\n", kernel_device);
 		found_kernel_device = 1;
-#endif
-		found_kernel_device = 0;
 	}
 
 	// force user rootfs
@@ -1061,19 +1058,16 @@ void find_kernel_rootfs_device()
 
 	if (!strcmp(vumodel, "duo4k") && multiboot_partition)
 	{
-#if 0 // TODO
 		if (multiboot_partition == 1)
-			strcpy(rootfs_device, "/dev/mmcblk0p10");
+			strcpy(rootfs_device, "/dev/mmcblk0p8");
 		else if (multiboot_partition == 2)
-			strcpy(rootfs_device, "/dev/mmcblk0p12");
+			strcpy(rootfs_device, "/dev/mmcblk0p10");
 		else if (multiboot_partition == 3)
-			strcpy(rootfs_device, "/dev/mmcblk0p14");
+			strcpy(rootfs_device, "/dev/mmcblk0p12");
 		else if (multiboot_partition == 4)
-			strcpy(rootfs_device, "/dev/mmcblk0p16");
+			strcpy(rootfs_device, "/dev/mmcblk0p14");
 		my_printf("Using %s as rootfs device\n", rootfs_device);
 		found_rootfs_device = 1;
-#endif
-		found_rootfs_device = 0;
 	}
 
 	if (!found_kernel_device)
