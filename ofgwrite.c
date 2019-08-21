@@ -1056,7 +1056,7 @@ void find_kernel_rootfs_device()
 		found_rootfs_device = 1;
 	}
 
-	if (!strcmp(vumodel, "duo4k") && multiboot_partition)
+	if (!strcmp(vumodel, "zero4k") && multiboot_partition)
 	{
 		if (multiboot_partition == 1)
 			strcpy(rootfs_device, "/dev/mmcblk0p8");
