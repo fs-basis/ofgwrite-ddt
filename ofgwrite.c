@@ -978,7 +978,7 @@ void find_kernel_rootfs_device()
 		my_printf("Using %s as kernel device\n", kernel_device);
 	}
 
-	if (!strcmp(vumodel, "solo4k") && multiboot_partition)
+	if ((!strcmp(vumodel, "solo4k") && multiboot_partition) || (!strcmp(vumodel, "ultimo4k") && multiboot_partition))
 	{
 		if (multiboot_partition == 1)
 			strcpy(kernel_device, "/dev/mmcblk0p4");
@@ -1006,7 +1006,7 @@ void find_kernel_rootfs_device()
 		found_kernel_device = 1;
 	}
 
-	if ((!strcmp(vumodel, "ultimo4k") && multiboot_partition) || (!strcmp(vumodel, "zero4k") && multiboot_partition))
+	if (!strcmp(vumodel, "zero4k") && multiboot_partition)
 	{
 		if (multiboot_partition == 1)
 			strcpy(kernel_device, "/dev/mmcblk0p7");
@@ -1028,7 +1028,7 @@ void find_kernel_rootfs_device()
 		my_printf("Using %s as rootfs device\n", rootfs_device);
 	}
 
-	if (!strcmp(vumodel, "solo4k") && multiboot_partition)
+	if ((!strcmp(vumodel, "solo4k") && multiboot_partition) || (!strcmp(vumodel, "ultimo4k") && multiboot_partition))
 	{
 		if (multiboot_partition == 1)
 			strcpy(rootfs_device, "/dev/mmcblk0p5");
@@ -1056,7 +1056,7 @@ void find_kernel_rootfs_device()
 		found_rootfs_device = 1;
 	}
 
-	if ((!strcmp(vumodel, "ultimo4k") && multiboot_partition) || (!strcmp(vumodel, "zero4k") && multiboot_partition))
+	if (!strcmp(vumodel, "zero4k") && multiboot_partition)
 	{
 		if (multiboot_partition == 1)
 			strcpy(rootfs_device, "/dev/mmcblk0p8");
