@@ -1028,7 +1028,7 @@ void find_kernel_rootfs_device()
 		my_printf("Using %s as rootfs device\n", rootfs_device);
 	}
 
-	if ((!strcmp(vumodel, "solo4k") && multiboot_partition) || (!strcmp(vumodel, "ultimo4k") && multiboot_partition) || (!strcmp(vumodel, "uno4kse") && multiboot_partition) || (!strcmp(vumodel, "uno4kse") && multiboot_partition))
+	if ((!strcmp(vumodel, "solo4k") && multiboot_partition) || (!strcmp(vumodel, "ultimo4k") && multiboot_partition) || (!strcmp(vumodel, "uno4k") && multiboot_partition) || (!strcmp(vumodel, "uno4kse") && multiboot_partition))
 	{
 		if (multiboot_partition == 1)
 			strcpy(rootfs_device, "/dev/mmcblk0p5");
