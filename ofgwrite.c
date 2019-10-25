@@ -741,9 +741,19 @@ int umount_rootfs()
 	}
 	else
 	{
-	/* reactivate hdmi output which is stopped when neutrino shutdown */
-		system("echo 'encoder' > /proc/stb/avs/0/input");
+		/*
+		   Reactivate correct input to make ofgrite visible again.
+		   libstb-hal set input to "aux" when cVideo is deleted.
+		*/
+		FILE *f;
+		f = fopen("/proc/stb/avs/0/input","w");
+		if (f != NULL)
+		{
+			fputs("encoder", f);
+			fclose(f);
+		}
 	}
+
 	show_main_window(1, ofgwrite_version);
 	set_overall_text("Flashing image");
 	set_step_without_incr("Wait until Neutrino is stopped");
