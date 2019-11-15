@@ -62,6 +62,7 @@ fi
 echo "Calling ofgwrite $@ $workdir"
 ofgwrite $@ $workdir
 umount /newroot
+rm -fr /newroot
 
 echo "Removing tempdir"
 rm -fr $workdir
