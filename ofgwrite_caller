@@ -61,6 +61,7 @@ fi
 
 echo "Calling ofgwrite $@ $workdir"
 ofgwrite $@ $workdir
+cd /tmp
 umount /newroot
 rm -fr /newroot
 
